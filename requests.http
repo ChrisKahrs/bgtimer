@@ -1,0 +1,14 @@
+GET http://localhost:5000/api/profiles
+
+###
+
+POST http://localhost:5500/api/profiles HTTP/1.1
+content-type: application/json
+
+{
+    "name": "John Doe",
+    "email": "asdf@yml.com"
+}
+
+###
+GET http://bvme.azurewebsites.net/api/profiles
