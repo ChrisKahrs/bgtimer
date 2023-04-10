@@ -1,3 +1,5 @@
+azure-core==1.26.4
+azure-data-tables==12.4.2
 aniso8601==9.0.1
 asttokens==2.0.8
 backcall==0.2.0
