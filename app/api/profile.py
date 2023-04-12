@@ -1,7 +1,7 @@
 import json
 import time
 
-from flask import request
+from flask import request, jsonify
 from flask_restful import Resource
 from azure.data.tables import TableServiceClient
 
@@ -13,7 +13,22 @@ with open('profiles.json', 'r') as f:
 
 class ProfileResource(Resource):
     def get(self):
-        return sorted(db, key=lambda k: k['last_name'])
+        print("self: ", request.args)
+        conn = "DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=bgtimer;AccountKey=9GB9Uuvf9IjSTSdYOyGu1Soa6klD1ImdzXNvhnyFJsLSKpLoIVfi6ACmt7Ey34uOnDcdoo5oZcOn+AStli9vcQ=="
+        service = TableServiceClient.from_connection_string(conn_str=conn)
+        from azure.data.tables import TableClient
+        my_filter = "PartitionKey eq 'rm1' and RowKey eq '102'"
+        table_client = TableClient.from_connection_string(conn_str=conn, table_name="cktest")
+
+
+        entities = table_client.query_entities(my_filter)
+        return_dict = {}
+        for entity in entities:
+            for key in entity.keys():
+                return_dict[key]=entity[key]
+                print("Key: {}, Value: {}".format(key, entity[key]))
+        # return sorted(db, key=lambda k: k['last_name'])
+        return jsonify(return_dict)
     
     def post(self):
         print("self: ", request.get_json())
@@ -42,9 +57,5 @@ class ProfileResource(Resource):
             my_entity2['RowKey'] = str(round(float(my_entity2['RowKey']) + 0.0001, 4))
             entity = table_client.create_entity(entity=my_entity2)
         # entities = table_client.query_entities(my_filter)
-        # return_dict = {}
-        # for entity in entities:
-        #     for key in entity.keys():
-        #         # return_dict[key]=entity[key]
-        #         print("Key: {}, Value: {}".format(key, entity[key]))
+
         return {"a":"b"}
