@@ -20,4 +20,4 @@ def read_form():
     data = request.form
     x = data['gamename']
     print("data_room: ",x)
-    return render_template('index2.html')
+    return render_template('index2.html', k=data)
