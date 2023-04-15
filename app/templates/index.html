@@ -2,12 +2,6 @@
 
 {% block content %}
 
-
-
-<html>
-  <head><meta charset="utf-8">
-
-
 <!-- <script>
 const getSeconds = () => {
     let dt = new Date();
@@ -19,10 +13,8 @@ setInterval(getSeconds, 1000)
 
 </script> -->
 <link rel="stylesheet" href="..\static\css\style.css">
-  </head>
   <body>
-
-
+<form action="{{ url_for('read_form')}}" method="post">
 Room Name: <input type="text" name="roomname" id="roomname" placeholder="Room Name"> <br><br>
 <button type="submit" name="create" class="create-btn">Create a Room</button> <br>
 <input type="checkbox" checked="checked">Reset if exists?</input> <br><br>
@@ -208,6 +200,8 @@ LED Strip Code: <input type="text" name="ledstrip" id="ledstrip" placeholder="LE
       </select></td>
     </tr>
   </table>
+
+</form>
 
 <script>
     player_1_color.onchange = function () {
