@@ -14,10 +14,10 @@ setInterval(getSeconds, 1000)
 </script> -->
 <link rel="stylesheet" href="..\static\css\style.css">
   <body>
-<form action="{{ url_for('read_form')}}" method="post">
+<form action="{{ url_for('start_form')}}" method="post">
 Room Name: <input type="text" name="roomname" id="roomname" placeholder="Room Name"> <br><br>
 <button type="submit" name="create" class="create-btn">Create a Room</button> <br>
-<input type="checkbox" checked="checked">Reset if exists?</input> <br><br>
+<input type="checkbox" name="reset" checked="checked">Reset if exists?</input> <br><br>
 <button type="submit" name="join" class="create-btn">Join a Room</button> <br><br>
 Optional: <br><br>
 Game Name: <input type="text" name="gamename" id="gamename" placeholder="Game Name">  <br><br>
@@ -71,7 +71,7 @@ LED Strip Code: <input type="text" name="ledstrip" id="ledstrip" placeholder="LE
       <td id="player_2_color_visual">2</td>
       <td>
         <div class="player_color">   
-            <select id="player_2_color" title="colorName" name="player2_color">
+            <select id="player_2_color" title="colorName" name="player_2_color">
                 <option value="none"><div color="red">None</div></option>
                 <option value="red">Red</option>
                 <option value="blue">Blue</option>
