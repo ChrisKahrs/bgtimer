@@ -1,9 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Timer</h1>
-    {{k}}
+<h1>Timer</h1>
+    
+{{k}}
 
+<!-- create a table with one row for each color in the timer -->
+<table>
+    <tr>
+        <th>Color</th>
+        <th>Time</th>
+    </tr>
+    {% for color in colors %}
+    <tr>
+        <td>{{color}}</td>
+        <td>{{colors[color]}}</td>
+    </tr>
+    {% endfor %}
+</table>
 
     
 {% endblock %}
